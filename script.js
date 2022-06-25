@@ -1,8 +1,17 @@
 //Pseudo Code
 
-//Harry to pick from 7 destinations:
+//Harry to pick from 5 destinations:
 //Hogsmeade, Hagrid's Hut, Quidditch Field, Forbidden Forest, Honey Dukes,
 //Castle Grounds. Three Broomsticks are all possible locations
+//CG -> 1 -> CG/Quest Incomplete
+//CG -> 2 -> Chamber of Secrets/Quest Incomplete
+//FF -> 1 -> FF/Quest Incomplete
+//FF -> 2 -> HH/Quest Incomplete
+//QF -> 1 -> QF/Lake
+//QF -> 2 -> QF/FF
+//HH -> 1 -> HH/Quest Incomplete
+//HH -> 2 -> HH/Quest Incomplete
+//HGM -> Three Broomsticks/ Honey Dukes/The Hog's Head Pub
 
 const selectDest = (choice) => {
   switch (choice) {
@@ -28,30 +37,40 @@ const selectDest = (choice) => {
 }
 
 const selectDestPrompt = () => {
-  let valueOfPrompt = prompt(`Where will you choose to go, Harry?`)
-  let numChoice
-  if (selectDest(valueOfPrompt) !== 1) {
-    numChoice = selectDest(valueOfPrompt)
-  } else {
+  while (1) {
     let valueOfPrompt = prompt(`Where will you choose to go, Harry?`)
+    let numChoice = selectDest(valueOfPrompt)
+    if (numChoice == 1) {
+    } else {
+      return numChoice
+    }
   }
-  return numChoice
 }
 
 const firstQuestion = (numChoice) => {
-  if (numChoice === 2 || 3) {
+  if (numChoice === 2) {
     let answer = prompt(
-      `I should really meet up with Ron & Hermione at the school grounds. Which way stairwell should I take? West stairwell (1), East stairwell (2) or South stairwell (3)?`
+      `I should really meet up with Ron & Hermione at the school grounds. Should I go now (1), or wait to go in 15 minutes (2)?`
     )
     return answer
-  } else if (numChoice === 4 || 5) {
+  } else if (numChoice === 3) {
     let answer = prompt(
-      `Oh no, which way to get to the Quidditch field and which way to get to the Forbidden Forest? Left (1) or right (2)?`
+      `I should go see the Centaur in the Forbidden Forest to see if he's heard anything about Lord Voldemort.  Should I bring my invisibility cloak - yes (1) or no (2)?`
     )
     return answer
-  } else {
+  } else if (numChoice === 4) {
     let answer = prompt(
-      `There is a split in the road ahead. I thought Ron said it was a straight path? Left (1) or right (2)?`
+      `I should really head to quidditch practice at the field to be on time. Should I take the unfamiliar short cut by the lake (1) or follow the well-known path from the castle grounds (2)?`
+    )
+    return answer
+  } else if (numChoice === 5) {
+    let answer = prompt(
+      `Haven't seen Hagrid in ages! Time for a visit. Bring him some butter beer (1) or bring nothing (2)?`
+    )
+    return answer
+  } else if (numChoice === 6) {
+    let answer = prompt(
+      `Do I feel like grabbing a butter beer at Three Broomsticks (1), buying some candy from Honey Dukes(2), or meeting up with friends at The Hog's Head Pub(3) in Hogsmeade?`
     )
     return answer
   }
